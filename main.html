@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>School Management System</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Header and Navigation -->
+    <h1>School Management System</h1>
+
+    <nav class="main-nav">
+        <ul>
+            <!-- Teacher Management Dropdown -->
+            <li class="dropdown">
+                <a href="#" class="dropbtn">Teachers</a>
+                <div class="dropdown-content">
+                    <a href="#" onclick="showTab('addTeacher')">Add Teacher</a>
+                    <a href="#" onclick="showTab('assignTeacher')">Assign Teacher</a>
+                    <a href="#" onclick="showTab('viewTeacher')">View Teacher</a>
+                    <a href="#" onclick="showTab('listTeachers')">List Teachers</a>
+                </div>
+            </li>
+            <!-- Group Management Dropdown -->
+            <li class="dropdown">
+                <a href="#" class="dropbtn">Groups</a>
+                <div class="dropdown-content">
+                    <a href="#" onclick="showTab('addGroup')">Add Group</a>
+                    <a href="#" onclick="showTab('listGroups')">List Groups</a>
+                </div>
+            </li>
+            <!-- Calendar Dropdown -->
+            <li class="dropdown">
+                <a href="#" class="dropbtn">Calendar</a>
+                <div class="dropdown-content">
+                    <a href="#" onclick="showTab('viewCalendar')">View Calendar</a>
+                </div>
+            </li>
+        </ul>
+    </nav>
+
+    <!-- Teacher Management Sections -->
+    <div id="addTeacher" class="tab-content">
+        <h2>Add Teacher</h2>
+        <form onsubmit="addTeacher(event)">
+            <input type="text" id="teacherName" placeholder="Enter teacher's name" required>
+            <button type="submit">Add Teacher</button>
+        </form>
+    </div>
+
+    <div id="assignTeacher" class="tab-content">
+        <h2>Assign Teacher</h2>
+        <form onsubmit="assignTeacher(event)">
+            <select id="teacherSelect" required>
+                <option value="">Select a teacher</option>
+            </select>
+            <select id="groupSelect" required>
+                <option value="">Select a group</option>
+            </select>
+            <input type="text" id="className" placeholder="Class name" required>
+            <select id="daySelect" required>
+                <option value="">Select a day</option>
+                <option value="Monday">Monday</option>
+                <option value="Tuesday">Tuesday</option>
+                <option value="Wednesday">Wednesday</option>
+                <option value="Thursday">Thursday</option>
+                <option value="Friday">Friday</option>
+                <option value="Saturday">Saturday</option>
+                <option value="Sunday">Sunday</option>
+            </select>
+            <input type="time" id="schedule" required>
+            <button type="submit">Assign</button>
+        </form>
+    </div>
+
+    <div id="viewTeacher" class="tab-content">
+        <h2>View Teacher</h2>
+        <select id="viewTeacherSelect" onchange="viewTeacher()">
+            <option value="">Select a teacher to view</option>
+        </select>
+        <div id="teacherInfo"></div>
+    </div>
+
+    <div id="listTeachers" class="tab-content">
+        <h2>List of Teachers</h2>
+        <table id="teacherList">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+
+    <!-- Group Management Sections -->
+    <div id="addGroup" class="tab-content">
+        <h2>Add Group</h2>
+        <form onsubmit="addGroup(event)">
+            <input type="text" id="groupName" placeholder="Enter group name" required>
+            <button type="submit">Add Group</button>
+        </form>
+    </div>
+
+    <div id="listGroups" class="tab-content">
+        <h2>List of Groups</h2>
+        <table id="groupList">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+
+    <!-- Calendar Section -->
+    <div id="viewCalendar" class="tab-content">
+        <h2>School Calendar</h2>
+        <div id="calendarFilter">
+            <label for="grupo-select">Filter by group:</label>
+            <select id="grupo-select">
+                <option value="todos">All groups</option>
+                <!-- Group options will be added dynamically -->
+            </select>
+        </div>
+        <table id="calendar">
+            <thead>
+                <tr>
+                    <th>Time</th>
+                    <th>Monday</th>
+                    <th>Tuesday</th>
+                    <th>Wednesday</th>
+                    <th>Thursday</th>
+                    <th>Friday</th>
+                    <th>Saturday</th>
+                    <th>Sunday</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Calendar rows will be filled dynamically -->
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Message display for user feedback -->
+    <div id="message"></div>
+
+    <!-- JavaScript file -->
+    <script src="script.js"></script>
+</body>
+</html>
